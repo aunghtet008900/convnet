@@ -10,7 +10,7 @@
 import socket,struct; from time import sleep as se; from sys import argv
 def convnet(IP):
         if "/" not in IP:
-                print("\n[!] Invalid Input: Must Select Prefix Number: ex: 192.168.1.1/24")
+                print("\n[!] Invalid Input: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
                 exit(1)
         IP = IP.split("/")
         subnet = IP[1]
