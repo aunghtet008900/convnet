@@ -15,8 +15,9 @@
 
 # Supported IP:
 - [x] IPv4
-
-- [] IPv6 - soon
+***
+- IPv6: **Will be supported soon**
+***
 
 # How To Install:
   - git clone https://github.com/Oseid/convnet.git
