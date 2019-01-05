@@ -71,8 +71,8 @@ def convnet(IP):
         	ones = "".join(net2bin.split(".")[-3:]).count("1")
         validsubnets = abs(2 **ones)
         validHost = abs(2 **zeros -2)
-        validsubnets = "{0:,}".format(validsubnets)
-        validHost = "{0:,}".format(validHost)
+        validsubnets = "{0:,}".format(validsubnets) if len(str(validsubnets)) > 4 else validsubnets
+        validHost = "{0:,}".format(validHost) if len(str(validHost)) > 4 else validHost
         netID = bin2ip(netIDbin)
         inmsk = ''.join([bin(~0)[3:] if x == '0' else bin(~1)[4:] for x in "".join(net2bin.split("."))])
         broadidbin = "".join(map(str, [int(i) | int(r) for i,r in zip(nid,inmsk)]))
@@ -126,7 +126,7 @@ else:
 	convnet(subnet)
 #Calculat Subnet(IPv6) --- Soon  In Version:2 :)
 ##############################################################
-###################### 		     #########################
+###################### 		         #########################
 ###################### END OF Module #########################
 ######################               #########################
 ##############################################################
