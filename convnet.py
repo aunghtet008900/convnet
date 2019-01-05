@@ -10,7 +10,7 @@
 import socket,struct; from time import sleep as se; from sys import argv
 def convnet(IP):
         if "/" not in IP:
-                print("\n[!] Invalid Input: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
+                print("\n[!] Invalid Input: Must Select Prefix Number: ex: 192.168.1.1/24")
                 exit(1)
         IP = IP.split("/")
         subnet = IP[1]
@@ -54,9 +54,12 @@ def convnet(IP):
         wacard = ".".join(map(str, [255 - int(x) for x in netmask.split(".")]))
         net2bin = ip2bin(netmask)
         IP2BIN = ip2bin(IP)
-        if IP2BIN.split(".")[0][0] =="0" : classType = "A"
-        elif IP2BIN.split(".")[0][:2] =="10" : classType = "B"
+        nid = "".join(map(str, [int(i) & int(r) for i,r in zip("".join(IP2BIN.split(".")),"".join(net2bin.split(".")))]))
+        netIDbin = ".".join(map(''.join, zip(*[iter(nid)] * 8)))
+        if netIDbin.split(".")[0][0] =="0" : classType = "A"
+        elif netIDbin.split(".")[0][:2] =="10" : classType = "B"
         else : classType = "C"
+        
         if classType =="C":
                 zeros = net2bin.split(".")[-1].count("0")
                 ones = net2bin.split(".")[-1].count("1")
@@ -70,8 +73,6 @@ def convnet(IP):
         validHost = abs(2 **zeros -2)
         validsubnets = "{0:,}".format(validsubnets)
         validHost = "{0:,}".format(validHost)
-        nid = "".join(map(str, [int(i) & int(r) for i,r in zip("".join(IP2BIN.split(".")),"".join(net2bin.split(".")))]))
-        netIDbin = ".".join(map(''.join, zip(*[iter(nid)] * 8)))
         netID = bin2ip(netIDbin)
         inmsk = ''.join([bin(~0)[3:] if x == '0' else bin(~1)[4:] for x in "".join(net2bin.split("."))])
         broadidbin = "".join(map(str, [int(i) | int(r) for i,r in zip(nid,inmsk)]))
@@ -123,13 +124,12 @@ if subnet in ["-h","-H","-hh","-HH","--help","--HELP","?","/?","help","HELP"]:
 	usage()
 else:
 	convnet(subnet)
-
 #Calculat Subnet(IPv6) --- Soon  In Version:2 :)
 ##############################################################
 ###################### 		     #########################
-###################### END OF SCRIPT #########################
+###################### END OF Module #########################
 ######################               #########################
 ##############################################################
-#This SCRIPT by: Oseid Aldary
+#This Module Codedby: Oseid Aldary
 #Have a nice day :)
 #GoodBye
