@@ -41,7 +41,7 @@ def convnet(IP):
         		exit(1)
         else:
         	if int(subnet) > 32:
-        		print("\n[!] Invalid Perfix Num: Prefix Number Must Be equal or less than '32'")
+        		print("\n[!] Invalid Input: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
         		exit(1)
         	else:
         		netmask = '.'.join([str((0xffffffff << (32 - int(subnet)) >> i) & 0xff) for i in [24, 16, 8, 0]])
