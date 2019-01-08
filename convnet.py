@@ -109,9 +109,9 @@ def convnet(IP):
         se(0.10)
         print("  [+] LastIP      :>[ {}".format(lastIP))
         se(0.10)
-        print("  [+] VaildHOSTS  :>[ {}".format(validHost))
+        print("  [+] ValidHOSTS  :>[ {}".format(validHost))
         se(0.10)
-        print("  [+] VaildSubnets:>[ {}".format(validsubnets))
+        print("  [+] ValidSubnets:>[ {}".format(validsubnets))
 
 def usage():
 	print("\n\nUsage: python convnet.py <IP/Netmask [OR] Perfix Number>\nExamples:\n\tpython convnet.py 192.8.3.1/255.255.192.0\n\tpython convnet.py 192.8.3.1/18\n\n")
