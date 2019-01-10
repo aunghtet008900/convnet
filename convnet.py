@@ -131,7 +131,7 @@ def convnet(IP):
                 print("  [*] UsableHosts   :>[ {}".format(validHost))
                 print("  [*] UsableSubnets :>[ {}".format(validsubnets))
                 print("=====================================")
-                for i in xrange(1,validsubnets+1):
+                for i in xrange(1,validSubnets+1):
                         print("\n[*] Subnet Number:[{}]".format(n))
                         print("===================="+'='*len(str(n)))
                         print("  [+] NetWorkID  :>[ {}".format(netID))
