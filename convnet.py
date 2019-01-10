@@ -123,7 +123,7 @@ def convnet(IP):
         else:
                 n = 1
                 print("\n=====================================")
-                print("[+]        VLSM Calculator        [+]")
+                print("[+]        FLSM  Calculator        [+]")
                 print("=====================================")
                 print("  [*] SubnetMask    :>[ {}".format(netmask) if c==0 else "  [+] NetMask Bits  :>[ /{}".format(bits))
                 print("  [*] WildCardMask  :>[ {}".format(wacard))
