@@ -1,9 +1,8 @@
 #!/usr/bin/python
-
 ################[INFO]#################
 # SCRIPT: Convnet                     #
 #Version: 1                           #
-#    JOB: Calculate Subnet(IPv4)      #
+#    JOB: Calculat Subnet(IPv4)       #
 #   Date: 2/1/2019                    #
 #CodedBy: Oseid Aldary                #
 #######################################
@@ -88,38 +87,51 @@ def convnet(IP):
                 firstIP = netID
                 lastIP = broadid
         # Show Info
-        print("\n=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
-        print(".:: INFO[ {}/{} ] ::.".format(IP,subnet))
-        se(0.10)
-        print("=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
-        if c==0:
-                print("  [+] NetMask     :>[ {}".format(netmask))
-                se(0.10)
+        show = 0
+        if c ==0:
+                if int(subnet) in [0,8,16,24]:
+                        show = 1
         else:
-                print("  [+] NetMask Bits:>[ /{}".format(bits))
+                if bits in [0,8,16,24]:
+                        show = 1
+        if show == 1:
+                print("\n=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
+                print(".:: INFO[ {}/{} ] ::.".format(IP,subnet))
                 se(0.10)
-        print("  [+] WildCardMask:>[ {}".format(wacard))
-        se(0.10)
-        print("  [+] NetWorkID   :>[ {}".format(netID))
-        se(0.10)
-        print("  [+] BroadCatID  :>[ {}".format(broadid))
-        se(0.10)
-        print("  [+] ClassType   :>[ {}".format(classType))
-        se(0.10)
-        print("  [+] FirstIP     :>[ {}".format(firstIP))
-        se(0.10)
-        print("  [+] LastIP      :>[ {}".format(lastIP))
-        se(0.10)
-        print("  [+] UsableHosts :>[ {}".format(validHost))
-        se(0.10)
-        print("  [+] ValidSubnets:>[ {}".format(validsubnets))
-
-        if validSubnets > 1:
+                print("=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
+                if c==0:
+                        print("  [+] NetMask     :>[ {}".format(netmask))
+                        se(0.10)
+                else:
+                        print("  [+] NetMask Bits:>[ /{}".format(bits))
+                        se(0.10)
+                print("  [+] WildCardMask:>[ {}".format(wacard))
+                se(0.10)
+                print("  [+] NetWorkID   :>[ {}".format(netID))
+                se(0.10)
+                print("  [+] BroadCatID  :>[ {}".format(broadid))
+                se(0.10)
+                print("  [+] ClassType   :>[ {}".format(classType))
+                se(0.10)
+                print("  [+] FirstIP     :>[ {}".format(firstIP))
+                se(0.10)
+                print("  [+] LastIP      :>[ {}".format(lastIP))
+                se(0.10)
+                print("  [+] UsableHosts :>[ {}".format(validHost))
+                se(0.10)
+                print("  [+] ValidSubnets:>[ {}".format(validsubnets))
+        else:
                 n = 1
                 print("\n=====================================")
                 print("[+]        VLSM Calculator        [+]")
                 print("=====================================")
-                for i in range(1,validsubnets+1):
+                print("  [*] SubnetMask    :>[ {}".format(netmask) if c==0 else "  [+] NetMask Bits  :>[ /{}".format(bits))
+                print("  [*] WildCardMask  :>[ {}".format(wacard))
+                print("  [*] ClassType     :>[ {}".format(classType))        
+                print("  [*] UsableHosts   :>[ {}".format(validHost))
+                print("  [*] UsableSubnets :>[ {}".format(validsubnets))
+                print("=====================================")
+                for i in xrange(1,validsubnets+1):
                         print("\n[*] Subnet Number:[{}]".format(n))
                         print("===================="+'='*len(str(n)))
                         print("  [+] NetWorkID  :>[ {}".format(netID))
@@ -131,8 +143,6 @@ def convnet(IP):
                         broadid = int2ip(ip2int(broadid)+validHosts)
                         lastIP = int2ip(ip2int(broadid)-1)
                         n+=1
-
-
 def usage():
         print("\n\nUsage: python convnet.py <IP/Netmask [OR] Perfix Number>\nExamples:\n\tpython convnet.py 192.8.3.1/255.255.192.0\n\tpython convnet.py 192.8.3.1/18\n\n")
         exit(1)
