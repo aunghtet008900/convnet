@@ -94,7 +94,7 @@ def convnet(IP):
         else:
                 if bits in [0,8,16,24]:
                         show = 1
-        if show == 1:
+        if show == 1 or validSubnets ==1:
                 print("\n=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
                 print(".:: INFO[ {}/{} ] ::.".format(IP,subnet))
                 se(0.10)
