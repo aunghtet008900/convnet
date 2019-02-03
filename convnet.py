@@ -47,8 +47,8 @@ def convnet(IP):
         ##################################### Convert ############################################
         ip2bin = lambda IP: ".".join(map(str,["{0:08b}".format(int(x)) for x in IP.split(".")])) #
         bin2ip = lambda bnum: ".".join(map(str, [ int(x, 2) for x in bnum.split(".")]))          #
-        ip2int = lambda ip2: struct.unpack('!I', socket.inet_aton(ip2))[0]                       #
-        int2ip = lambda inum: socket.inet_ntoa(struct.pack('!I', inum))                          #
+        ip2int = lambda ip: reduce(lambda a,b: long(a)*256 + long(b), ip.split('.'))             #
+        int2ip = lambda num: '.'.join([str((num >> 8*i) % 256) for i in [3,2,1,0]])              #
         ##########################################################################################
         wacard = ".".join(map(str, [255 - int(x) for x in netmask.split(".")]))
         net2bin = ip2bin(netmask)
