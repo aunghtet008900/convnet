@@ -6,7 +6,7 @@
 #   Date: 2/1/2019                    #
 #CodedBy: Oseid Aldary                #
 #######################################
-import socket,struct; from time import sleep as se; from sys import argv
+from time import sleep as se; from sys import argv
 def convnet(IP):
         if "/" not in IP:
                 print("\n[!] Invalid Input: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
@@ -46,7 +46,7 @@ def convnet(IP):
                         netmask = '.'.join([str((0xffffffff << (32 - int(subnet)) >> i) & 0xff) for i in [24, 16, 8, 0]])
         ##################################### Convert ############################################
         ip2bin = lambda IP: ".".join(map(str,["{0:08b}".format(int(x)) for x in IP.split(".")])) #
-        bin2ip = lambda bnum: ".".join(map(str, [ int(x, 2) for x in bnum.split(".")]))          #
+        bin2ip = lambda bnum: ".".join(map(str,[int(x, 2) for x in bnum.split(".")]))            #
         ip2int = lambda ip: reduce(lambda a,b: long(a)*256 + long(b), ip.split('.'))             #
         int2ip = lambda num: '.'.join([str((num >> 8*i) % 256) for i in [3,2,1,0]])              #
         ##########################################################################################
