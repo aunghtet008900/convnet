@@ -9,7 +9,7 @@
 from time import sleep as se; from sys import argv
 def convnet(IP):
         if "/" not in IP:
-                print("\n[!] Invalid Input: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
+                print("\n[!] Invalid Cdir: Must Select Prefix Number [OR] Subnet Mask !!!\n[*] Examples:\n\tpython convnet.py 192.168.1.1/24\n\tpython convnet.py 172.16.0.0/255.255.0.0")
                 exit(1)
         IP = IP.split("/")
         subnet = IP[1]
@@ -86,25 +86,15 @@ def convnet(IP):
         else:
                 firstIP = netID
                 lastIP = broadid
+                
         # Show Info
-        show = 0
-        if c ==0:
-                if int(subnet) in [0,8,16,24]:
-                        show = 1
-        else:
-                if bits in [0,8,16,24]:
-                        show = 1
-        if show == 1 or validSubnets ==1:
+        if validSubnets ==1:
                 print("\n=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
                 print(".:: INFO[ {}/{} ] ::.".format(IP,subnet))
                 se(0.10)
                 print("=========="+"="*len(IP)+"="+"="*len(subnet)+"======")
-                if c==0:
-                        print("  [+] NetMask     :>[ {}".format(netmask))
-                        se(0.10)
-                else:
-                        print("  [+] NetMask Bits:>[ /{}".format(bits))
-                        se(0.10)
+                if c==0 : print("  [+] NetMask     :>[ {}".format(netmask));se(0.10)
+                else : print("  [+] NetMask Bits:>[ /{}".format(bits));se(0.10)
                 print("  [+] WildCardMask:>[ {}".format(wacard))
                 se(0.10)
                 print("  [+] NetWorkID   :>[ {}".format(netID))
@@ -131,6 +121,7 @@ def convnet(IP):
                 print("  [*] UsableHosts   :>[ {}".format(validHost))
                 print("  [*] UsableSubnets :>[ {}".format(validsubnets))
                 print("=====================================")
+
                 for i in xrange(1,validSubnets+1):
                         print("\n[*] Subnet Number:[{}]".format(n))
                         print("===================="+'='*len(str(n)))
@@ -143,6 +134,7 @@ def convnet(IP):
                         broadid = int2ip(ip2int(broadid)+validHosts)
                         lastIP = int2ip(ip2int(broadid)-1)
                         n+=1
+                	
 def usage():
         print("\n\nUsage: python convnet.py <IP/Netmask [OR] Perfix Number>\nExamples:\n\tpython convnet.py 192.8.3.1/255.255.192.0\n\tpython convnet.py 192.8.3.1/18\n\n")
         exit(1)
@@ -154,7 +146,8 @@ if subnet in ["-h","-H","-hh","-HH","--help","--HELP","?","/?","help","HELP"]:
         usage()
 else:
         convnet(subnet)
-#Calculat Subnet(IPv6) --- Soon  In Version:2 :)
+#TODO
+# Calculat Subnet(IPv6)
 ##############################################################
 ######################               #########################
 ###################### END OF Module #########################
